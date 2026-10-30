@@ -56,11 +56,14 @@ export function OracleKit() {
       </header>
 
       <section className="legend mt-8" aria-label="Legend">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="sql-mark px-2 py-1 text-sm">TABLE_NAME</span>
-          <span className="text-sm text-[color:var(--muted)]">
-            = लाल रंग वाले tokens ही आपकी जगह बदलने हैं। बाकी keywords
-            (SELECT, FROM, WHERE…) मत छुएँ।
+        <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+          <span className="inline-flex flex-wrap items-center gap-2 text-sm text-[color:var(--muted)]">
+            <span className="sql-mark px-2 py-1">TABLE_NAME</span>
+            लाल = अभी बदलना बाकी
+          </span>
+          <span className="inline-flex flex-wrap items-center gap-2 text-sm text-[color:var(--muted)]">
+            <span className="sql-filled px-2 py-1 text-sm">EMPLOYEES</span>
+            हरा = आपने value भर दी
           </span>
         </div>
       </section>
@@ -97,17 +100,28 @@ export function OracleKit() {
       </section>
 
       <section id="templates" className="mt-10 scroll-mt-6">
-        <div className="flex flex-wrap gap-2">
-          {CATEGORIES.map((cat) => (
-            <Button
-              key={cat.id}
-              size="sm"
-              variant={category === cat.id ? "default" : "outline"}
-              onClick={() => setCategory(cat.id)}
-            >
-              {cat.labelHi}
-            </Button>
-          ))}
+        <div
+          className="flex flex-wrap gap-2"
+          role="tablist"
+          aria-label="Query categories"
+        >
+          {CATEGORIES.map((cat) => {
+            const selected = category === cat.id;
+            return (
+              <Button
+                key={cat.id}
+                type="button"
+                size="sm"
+                role="tab"
+                aria-selected={selected}
+                variant={selected ? "default" : "outline"}
+                onClick={() => setCategory(cat.id)}
+              >
+                {cat.labelHi}
+                <span className="sr-only"> ({cat.labelEn})</span>
+              </Button>
+            );
+          })}
         </div>
 
         <div className="mt-6 space-y-4">
