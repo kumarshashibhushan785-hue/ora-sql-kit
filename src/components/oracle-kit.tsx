@@ -55,7 +55,7 @@ export function OracleKit() {
         </div>
       </header>
 
-      <section className="legend mt-8 animate-rise delay-2" aria-label="Legend">
+      <section className="legend mt-8" aria-label="Legend">
         <div className="flex flex-wrap items-center gap-3">
           <span className="sql-mark px-2 py-1 text-sm">TABLE_NAME</span>
           <span className="text-sm text-[color:var(--muted)]">
