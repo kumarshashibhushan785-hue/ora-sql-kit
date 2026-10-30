@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { LogoutButton } from "@/components/logout-button";
 import { MongoKit } from "@/components/mongo-kit";
+import { MysqlKit } from "@/components/mysql-kit";
 import { OracleKit } from "@/components/oracle-kit";
 import { Button } from "@/components/ui/button";
 
-type KitId = "oracle" | "mongo";
+type KitId = "oracle" | "mysql" | "mongo";
 
 export function KitApp() {
   const [kit, setKit] = useState<KitId>("oracle");
@@ -29,6 +30,14 @@ export function KitApp() {
           <Button
             type="button"
             size="sm"
+            variant={kit === "mysql" ? "default" : "outline"}
+            onClick={() => setKit("mysql")}
+          >
+            MySQL
+          </Button>
+          <Button
+            type="button"
+            size="sm"
             variant={kit === "mongo" ? "default" : "outline"}
             onClick={() => setKit("mongo")}
           >
@@ -37,7 +46,13 @@ export function KitApp() {
           <LogoutButton />
         </div>
       </div>
-      {kit === "oracle" ? <OracleKit /> : <MongoKit />}
+      {kit === "oracle" ? (
+        <OracleKit />
+      ) : kit === "mysql" ? (
+        <MysqlKit />
+      ) : (
+        <MongoKit />
+      )}
     </div>
   );
 }

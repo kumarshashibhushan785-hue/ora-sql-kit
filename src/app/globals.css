@@ -90,6 +90,16 @@
   transform: translateY(-1px);
 }
 
+.hero-mysql {
+  background:
+    linear-gradient(145deg, #1a365d 0%, #2b6cb0 50%, #dd6b20 100%);
+  box-shadow: 0 24px 60px rgba(26, 54, 93, 0.28);
+}
+
+.brand-mark-mysql {
+  color: #fbd38d;
+}
+
 .hero-grid {
   position: absolute;
   inset: 0;
