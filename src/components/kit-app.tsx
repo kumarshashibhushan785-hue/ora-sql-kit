@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { LogoutButton } from "@/components/logout-button";
 import { MongoKit } from "@/components/mongo-kit";
 import { OracleKit } from "@/components/oracle-kit";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,7 @@ export function KitApp() {
           >
             MongoDB Compass JS
           </Button>
+          <LogoutButton />
         </div>
       </div>
       {kit === "oracle" ? <OracleKit /> : <MongoKit />}
