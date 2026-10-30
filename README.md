@@ -1,8 +1,11 @@
-# Oracle SQL Kit
+# DB Query Kit (Oracle SQL + MongoDB Compass JS)
 
-Oracle database (11g / 12c / 19c / 21c / XE / Autonomous) के लिए ready SQL templates।
+दो kits एक ही app में:
 
-**लाल रंग** वाले हिस्से ही बदलने हैं — `TABLE_NAME`, column names, और values। बाकी SQL वैसा ही छोड़ दें।
+1. **Oracle SQL Kit** — Oracle 11g / 12c / 19c / 21c / XE / Autonomous  
+2. **Mongo Shell Kit** — MongoDB Compass → Mongosh JavaScript
+
+**लाल रंग** वाले हिस्से ही बदलने हैं (`TABLE_NAME` / `COLLECTION` / fields)। बाकी वैसा ही छोड़ दें।
 
 ## Run locally
 
@@ -15,13 +18,13 @@ Open [http://127.0.0.1:43127](http://127.0.0.1:43127).
 
 ## How to use
 
-1. ऊपर common fields भरें (टेबल नाम, columns) — optional।
-2. Category चुनें (SELECT, DML, JOIN, Oracle-specific…)।
-3. Query में **लाल tokens** अपनी जगह की values से बदलें।
-4. **SQL Copy करें** और SQL Developer / SQL\*Plus / SQLcl में चलाएँ।
+1. ऊपर **Oracle SQL** या **MongoDB Compass JS** चुनें।
+2. Common fields भरें (optional)।
+3. **लाल tokens** बदलें → **SQL Copy** / **JS Copy**।
+4. Oracle: SQL Developer / SQLcl · Mongo: Compass → `>_ Mongosh` में paste।
 
 ## Notes
 
-- `COMMIT` वाले templates में Oracle session में बदलाव save करने के लिए commit जरूरी है।
-- `FETCH FIRST … ROWS ONLY` Oracle **12c+** पर चलता है; पुराने versions के लिए `ROWNUM` template इस्तेमाल करें।
-- Metadata queries (`user_tables`, `user_tab_columns`) हर Oracle edition पर काम करती हैं।
+- Oracle `COMMIT` वाले templates में commit जरूरी है।
+- `FETCH FIRST` Oracle **12c+**; पुराने के लिए `ROWNUM` template।
+- Mongo templates Compass Mongosh syntax पर हैं (`db.collection.find()` …)।

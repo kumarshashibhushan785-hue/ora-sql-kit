@@ -20,10 +20,10 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Oracle SQL Kit — लाल हिस्से बदलो, query चलाओ",
+  title: "DB Query Kit — Oracle SQL + MongoDB Compass JS",
   description:
-    "Oracle database के लिए ready SQL templates। सिर्फ TABLE_NAME और essential fields बदलें — बाकी वैसा ही छोड़ दें।",
-};
+    "Oracle SQL और MongoDB Compass Mongosh JavaScript templates। लाल placeholders बदलो, copy करके चलाओ।",
+}
 
 export default function RootLayout({
   children,

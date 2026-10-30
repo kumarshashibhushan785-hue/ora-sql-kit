@@ -1,5 +1,5 @@
-import { OracleKit } from "@/components/oracle-kit";
+import { KitApp } from "@/components/kit-app";
 
 export default function Home() {
-  return <OracleKit />;
+  return <KitApp />;
 }

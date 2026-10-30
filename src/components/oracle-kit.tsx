@@ -3,7 +3,11 @@
 import { useMemo, useState } from "react";
 import { QueryCard } from "@/components/query-card";
 import { Button } from "@/components/ui/button";
-import { CATEGORIES, QUERIES } from "@/data/oracle-queries";
+import {
+  CATEGORIES,
+  PLACEHOLDER_HINTS,
+  QUERIES,
+} from "@/data/oracle-queries";
 
 const GLOBAL_KEYS = [
   { key: "TABLE_NAME", label: "टेबल नाम", placeholder: "EMPLOYEES" },
@@ -130,6 +134,8 @@ export function OracleKit() {
               key={query.id}
               query={query}
               globalValues={globals}
+              hints={PLACEHOLDER_HINTS}
+              copyLabel="SQL Copy करें"
             />
           ))}
         </div>

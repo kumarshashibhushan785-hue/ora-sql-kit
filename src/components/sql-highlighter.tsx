@@ -1,16 +1,15 @@
 "use client";
 
-import { PLACEHOLDER_HINTS } from "@/data/oracle-queries";
-
 const TOKEN_RE = /(\{\{[A-Z0-9_]+\}\})/g;
 
 type Props = {
   sql: string;
   /** Live overrides: placeholder key → user value */
   values?: Record<string, string>;
+  hints?: Record<string, string>;
 };
 
-export function SqlHighlighter({ sql, values = {} }: Props) {
+export function SqlHighlighter({ sql, values = {}, hints = {} }: Props) {
   const parts = sql.split(TOKEN_RE);
 
   return (
@@ -23,24 +22,16 @@ export function SqlHighlighter({ sql, values = {} }: Props) {
           }
           const key = match[1];
           const override = values[key]?.trim();
-          const hint = PLACEHOLDER_HINTS[key] ?? "इसे बदलें";
+          const hint = hints[key] ?? "इसे बदलें";
           if (override) {
             return (
-              <span
-                key={i}
-                className="sql-filled"
-                title={`${key}: ${hint}`}
-              >
+              <span key={i} className="sql-filled" title={`${key}: ${hint}`}>
                 {override}
               </span>
             );
           }
           return (
-            <mark
-              key={i}
-              className="sql-mark"
-              title={`${key}: ${hint}`}
-            >
+            <mark key={i} className="sql-mark" title={`${key}: ${hint}`}>
               {key}
             </mark>
           );

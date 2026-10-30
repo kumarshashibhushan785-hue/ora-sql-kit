@@ -1,3 +1,5 @@
+import type { QueryTemplate as SharedQueryTemplate } from "@/data/types";
+
 export type QueryCategory =
   | "select"
   | "dml"
@@ -6,15 +8,8 @@ export type QueryCategory =
   | "oracle"
   | "meta";
 
-export type QueryTemplate = {
-  id: string;
+export type QueryTemplate = SharedQueryTemplate & {
   category: QueryCategory;
-  titleHi: string;
-  titleEn: string;
-  descHi: string;
-  /** SQL with {{PLACEHOLDER}} tokens — only these need changing */
-  sql: string;
-  tips?: string[];
 };
 
 export const CATEGORIES: {

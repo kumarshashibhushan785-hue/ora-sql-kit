@@ -9,17 +9,21 @@ import {
   extractPlaceholders,
   sqlPlainText,
 } from "@/components/sql-highlighter";
-import {
-  PLACEHOLDER_HINTS,
-  type QueryTemplate,
-} from "@/data/oracle-queries";
+import type { QueryTemplate } from "@/data/types";
 
 type Props = {
   query: QueryTemplate;
   globalValues: Record<string, string>;
+  hints?: Record<string, string>;
+  copyLabel?: string;
 };
 
-export function QueryCard({ query, globalValues }: Props) {
+export function QueryCard({
+  query,
+  globalValues,
+  hints = {},
+  copyLabel = "SQL Copy करें",
+}: Props) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [local, setLocal] = useState<Record<string, string>>({});
@@ -68,7 +72,7 @@ export function QueryCard({ query, globalValues }: Props) {
       </button>
 
       <div className="mt-4">
-        <SqlHighlighter sql={query.sql} values={values} />
+        <SqlHighlighter sql={query.sql} values={values} hints={hints} />
       </div>
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -78,12 +82,10 @@ export function QueryCard({ query, globalValues }: Props) {
           ) : (
             <Copy className="h-3.5 w-3.5" />
           )}
-          {copied ? "Copy हो गया" : "SQL Copy करें"}
+          {copied ? "Copy हो गया" : copyLabel}
         </Button>
         {placeholders.length > 0 ? (
-          <Badge variant="alert">
-            {placeholders.length} लाल हिस्से बदलें
-          </Badge>
+          <Badge variant="alert">{placeholders.length} लाल हिस्से बदलें</Badge>
         ) : (
           <Badge variant="secondary">कोई बदलाव नहीं — सीधे चलाएँ</Badge>
         )}
@@ -96,7 +98,7 @@ export function QueryCard({ query, globalValues }: Props) {
               <span className="flex items-center gap-2 text-xs font-medium">
                 <span className="sql-mark px-1.5 py-0.5 text-[11px]">{key}</span>
                 <span className="text-[color:var(--muted)]">
-                  {PLACEHOLDER_HINTS[key] ?? "अपनी value लिखें"}
+                  {hints[key] ?? "अपनी value लिखें"}
                 </span>
               </span>
               <input
