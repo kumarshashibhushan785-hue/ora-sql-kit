@@ -5,9 +5,10 @@ import { LogoutButton } from "@/components/logout-button";
 import { MongoKit } from "@/components/mongo-kit";
 import { MysqlKit } from "@/components/mysql-kit";
 import { OracleKit } from "@/components/oracle-kit";
+import { PostgresKit } from "@/components/postgres-kit";
 import { Button } from "@/components/ui/button";
 
-type KitId = "oracle" | "mysql" | "mongo";
+type KitId = "oracle" | "mysql" | "postgres" | "mongo";
 
 export function KitApp() {
   const [kit, setKit] = useState<KitId>("oracle");
@@ -38,6 +39,14 @@ export function KitApp() {
           <Button
             type="button"
             size="sm"
+            variant={kit === "postgres" ? "default" : "outline"}
+            onClick={() => setKit("postgres")}
+          >
+            PostgreSQL
+          </Button>
+          <Button
+            type="button"
+            size="sm"
             variant={kit === "mongo" ? "default" : "outline"}
             onClick={() => setKit("mongo")}
           >
@@ -50,6 +59,8 @@ export function KitApp() {
         <OracleKit />
       ) : kit === "mysql" ? (
         <MysqlKit />
+      ) : kit === "postgres" ? (
+        <PostgresKit />
       ) : (
         <MongoKit />
       )}

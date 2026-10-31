@@ -20,9 +20,9 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DB Query Kit — Oracle, MySQL, MongoDB",
+  title: "DB Query Kit — Oracle, MySQL, PostgreSQL, MongoDB",
   description:
-    "Oracle SQL, MySQL और MongoDB Compass Mongosh templates। लाल placeholders बदलो, copy करके चलाओ।",
+    "Oracle, MySQL, PostgreSQL और MongoDB Compass templates। लाल placeholders बदलो, copy करके चलाओ।",
 };
 
 export default function RootLayout({
